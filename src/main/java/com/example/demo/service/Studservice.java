@@ -9,5 +9,5 @@ public interface Studservice {
     Optional<Studentity>
     getOneStudent(Long id);
 
-    void deleteStudent
+    void deleteStudent(Long id);
 }
