@@ -1,33 +1,35 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.Impl;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.Studentity;
+import com.example.demo.repository.StudRepo;
+import com.example.demo.service.Studservice;
 
 @Service
-public class StudServiceImpl
-implements StudService{
-    private final Map<Long,Studentity>store=new HashMap<>();
+public class StudServiceImpl implements Studservice {
 
-    @Override
-    public Studentity insertStudentity(Studentity st){
-        store.put(st.getId(),st);
-        return st;
+    private final StudRepo repo;
+
+    public StudServiceImpl(StudRepo repo) {
+        this.repo = repo;
     }
 
     @Override
-    public List<Studentity>getAllStudentity()
-    {
-        return new ArrayList<>(store.values());
+    public Studentity save(Studentity s) {
+        return repo.save(s);
     }
 
     @Override
-    public Optional<Studentity>getOneStudent(Long id){
-        return Optional.ofNullables(store.get(id));
+    public List<Studentity> getAll() {
+        return repo.findAll();
     }
 
-    @Override 
-    public void deleteStudent(Long id) {
-        store.remove(id);
+    @Override
+    public Optional<Studentity> getById(Long id) {
+        return repo.findById(id); // uses Optional.ofNullable internally
     }
 }
