@@ -21,6 +21,22 @@ public class Studctl {
 
     @PostMapping("/add")
     public Studentity addStudent(@RequestBody Studentity st) {
-        return 
+        return ser.insertStudentity(st);
     }
+
+    @GetMapping("/getAll")
+    public List<Studentity>
+    getAllStudent() {
+        return ser.getAllStudentity();
+    }
+
+    @GetMapping("/get/{id}")
+    public Optional<Studentity>
+    getStudent(@PathVariable Long id) {
+        return ser.getOneStudent(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public String
+    updateStudent(@)
 }
