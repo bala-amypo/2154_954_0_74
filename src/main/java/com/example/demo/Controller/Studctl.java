@@ -38,5 +38,13 @@ public class Studctl {
 
     @PutMapping("/update/{id}")
     public String
-    updateStudent(@)
+    updateStudent(@PathVariable
+    Long id,@RequestBody Studentity
+    newStudentity) {
+        Optional<Studentity>student = ser.getOneStudent(id);
+        if(student.isPresent()) {
+            newStudentity.setId(id);
+            ser.insertStudent
+        }
+    }
 }
