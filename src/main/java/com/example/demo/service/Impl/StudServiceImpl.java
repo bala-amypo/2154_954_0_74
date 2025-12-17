@@ -2,11 +2,11 @@ package com.example.demo.service.impl;
 
 import java.util.*;
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.Student;
+import com.example.demo.entity.Studentity;
 
 @Service
-public class StudentServiceImpl
-implements StudentService{
+public class StudServiceImpl
+implements StudService{
     private final Map<Long,Student>store=new HashMap<>();
     private long counter=1;
 
