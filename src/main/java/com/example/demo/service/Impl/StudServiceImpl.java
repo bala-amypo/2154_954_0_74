@@ -7,28 +7,27 @@ import com.example.demo.entity.Studentity;
 @Service
 public class StudServiceImpl
 implements StudService{
-    private final Map<Long,Student>store=new HashMap<>();
-    private long counter=1;
+    private final Map<Long,Studentity>store=new HashMap<>();
 
     @Override
-    public Student insertStudent(Student st){
-        st.setId(counter++);
+    public Studentity insertStudentity(Studentity st){
         store.put(st.getId(),st);
         return st;
     }
 
     @Override
-    public List<Student>getAllStudents()
+    public List<Studentity>getAllStudentity()
     {
-        return new ArrayList<>(stor.values());
+        return new ArrayList<>(store.values());
     }
 
     @Override
-    public Optional<Student>getOneStudent(Long id){
+    public Optional<Studentity>getOneStudent(Long id){
         return Optional.ofNullables(store.get(id));
     }
 
-    @Override public void deleteStudent(Long id) {
+    @Override 
+    public void deleteStudent(Long id) {
         store.remove(id);
     }
 }
