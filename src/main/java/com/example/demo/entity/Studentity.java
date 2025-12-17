@@ -18,5 +18,14 @@ public void setName(String name) {
 public String getEmail(){
     return email;
 }
-public 
+public void setEmail(String email){
+    this.email=email;
+}
+public Studentity(int id,String name,String email){
+    this.id=(long)id;
+    this.name=name;
+    this.email=email;
+}
+public Studentity(){
+}
 }
