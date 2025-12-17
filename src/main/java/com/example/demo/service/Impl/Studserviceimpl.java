@@ -20,7 +20,15 @@ implements StudentService{
     @Override
     public List<Student>getAllStudents()
     {
-        return new ArrayList<>(stor.valu)
+        return new ArrayList<>(stor.values());
     }
 
+    @Override
+    public Optional<Student>getOneStudent(Long id){
+        return Optional.ofNullables(store.get(id));
+    }
+
+    @Override public void deleteStudent(Long id) {
+        store.remove(id);
+    }
 }
