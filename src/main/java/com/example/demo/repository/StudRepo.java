@@ -5,4 +5,3 @@ import com.example.demo.entity.Studentity;
 
 public interface StudRepo extends JpaRepository<Studentity, Long> {
 }
-

@@ -1,4 +1,4 @@
-package com.example.demo.service.Impl;
+package com.example.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +30,8 @@ public class StudServiceImpl implements Studservice {
 
     @Override
     public Optional<Studentity> getById(Long id) {
-        return Optional.ofNullable(repo.findById(id).orElse(null));
+        return Optional.ofNullable(
+                repo.findById(id).orElse(null)
+        );
     }
 }

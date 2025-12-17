@@ -1,8 +1,7 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Studentity;
@@ -12,20 +11,19 @@ import com.example.demo.service.Studservice;
 @RequestMapping("/student")
 public class Studctl {
 
-    private final Studservice ser;
+    private final Studservice service;
 
-    @Autowired
-    public Studctl(Studservice ser) {
-        this.ser = ser;
+    public Studctl(Studservice service) {
+        this.service = service;
     }
 
     @PostMapping("/add")
-    public Studentity addStudent(@RequestBody Studentity s) {
-        return ser.save(s);
+    public Studentity add(@RequestBody Studentity s) {
+        return service.save(s);
     }
 
     @GetMapping("/all")
-    public List<Studentity> getAllStudents() {
-        return ser.getAll();
+    public List<Studentity> getAll() {
+        return service.getAll();
     }
 }
