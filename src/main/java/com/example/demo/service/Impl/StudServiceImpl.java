@@ -30,6 +30,6 @@ public class StudServiceImpl implements Studservice {
 
     @Override
     public Optional<Studentity> getById(Long id) {
-        return repo.findById(id); // uses Optional.ofNullable internally
+        return Optional.ofNullable(repo.findById(id).orElse(null));
     }
 }
