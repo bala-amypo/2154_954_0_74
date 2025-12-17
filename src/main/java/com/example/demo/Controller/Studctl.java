@@ -10,3 +10,17 @@ import com.example.demo.entity.Studentity;
 import com.example.demo.service.Studservice;
 
 @RestController
+@RequestMapping("/student")
+public class Studctl {
+    private final Studservice ser;
+
+    @Autowired
+    public Studctl(Studservice ser) {
+        this.ser = ser;
+    }
+
+    @PostMapping("/add")
+    public Studentity addStudent(@RequestBody Studentity st) {
+        return 
+    }
+}
