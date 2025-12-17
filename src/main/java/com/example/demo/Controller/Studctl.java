@@ -53,8 +53,7 @@ public class Studctl {
     @DeleteMapping("/del/{id}")
     public String
     deleteStudent(@PathVariable Long id) {
-        Optional<Studentity> student=
-        ser.getOneStudent(id);
+        Optional<Studentity> student=ser.getOneStudent(id);
         if(student.isPresent()) {
             ser.deleteStudent(id);
             return "Deleted Successfully";
