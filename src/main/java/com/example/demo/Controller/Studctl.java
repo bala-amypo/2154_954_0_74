@@ -44,7 +44,21 @@ public class Studctl {
         Optional<Studentity>student = ser.getOneStudent(id);
         if(student.isPresent()) {
             newStudentity.setId(id);
-            ser.insertStudent
+            ser.insertStudentity(newStudentity);
+            return :"Updateed Successfully";
         }
+        return "Id not found";
+    }
+
+    @DeleteMapping("/del/{id}")
+    public String
+    deleteStudent(@PathVariable Long id) {
+        Optional<Studentity> student=
+        ser.getOneStudent(id);
+        if(student.isPresent()) {
+            ser.deleteStudent(id);
+            return "Deleted Successfully";
+        }
+        return "Id not found";
     }
 }
