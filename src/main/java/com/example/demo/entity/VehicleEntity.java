@@ -16,7 +16,16 @@ public class VehicleEntity {
     private String model;
     private int year;
 
-    // ✅ Getters & Setters
+    // Constructors
+    public VehicleEntity() {}
+
+    public VehicleEntity(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+
+    // Getters and setters
     public Long getId() {
         return id;
     }
