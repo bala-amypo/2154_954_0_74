@@ -1,13 +1,29 @@
-package com.example.demo.service;
+public VehicleEntity insertVehicle(VehicleEntity vehicle) {
+    return vehicleRepo.save(vehicle);
+}
 
-import com.example.demo.entity.VehicleEntity;
-import java.util.List;
+public List<VehicleEntity> getAllVehicles() {
+    return vehicleRepo.findAll();
+}
 
-public interface VehicleService {
+public Optional<VehicleEntity> getOneVehicle(Long id) {
+    return vehicleRepo.findById(id);
+}
 
-    VehicleEntity addVehicle(Long userId, VehicleEntity vehicle);
+public VehicleEntity updateVehicle(Long id, VehicleEntity newVehicle) {
+    return vehicleRepo.findById(id)
+            .map(vehicle -> {
+                vehicle.setBrand(newVehicle.getBrand());
+                vehicle.setModel(newVehicle.getModel());
+                vehicle.setYear(newVehicle.getYear());
+                return vehicleRepo.save(vehicle);
+            }).orElse(null);
+}
 
-    List<VehicleEntity> getVehiclesByUser(Long userId);
-
-    VehicleEntity findById(Long id);
+public boolean deleteVehicle(Long id) {
+    if (vehicleRepo.existsById(id)) {
+        vehicleRepo.deleteById(id);
+        return true;
+    }
+    return false;
 }
