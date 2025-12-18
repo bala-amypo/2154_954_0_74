@@ -1,11 +1,8 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import com.example.demo.entity.UserEntity;
 
 public interface UserRepo extends JpaRepository<UserEntity, Long> {
-
-    Optional<UserEntity> findByEmail(String email);
+    // You can add custom queries here if needed
 }
