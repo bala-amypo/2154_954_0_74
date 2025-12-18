@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
-import com.example.demo.entity.Vehicle;
+import com.example.demo.entity.VehicleEntity;
 import com.example.demo.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,37 +8,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vehicles")
+@RequestMapping("/vehicles")
 public class VehicleController {
 
-    private final VehicleService vehicleService;
-
     @Autowired
-    public VehicleController(VehicleService vehicleService) {
-        this.vehicleService = vehicleService;
+    private VehicleService vehicleService;
+
+    @PostMapping("/add/{userId}")
+    public VehicleEntity addVehicle(@PathVariable Long userId,
+                                    @RequestBody VehicleEntity vehicle) {
+        return vehicleService.addVehicle(userId, vehicle);
     }
 
-    // Add vehicle
-    @PostMapping("/add")
-    public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
-        return vehicleService.addVehicle(vehicle);
-    }
-
-    // Get all vehicles
-    @GetMapping
-    public List<Vehicle> getAllVehicles() {
-        return vehicleService.getAllVehicles();
-    }
-
-    // Get vehicle by id
-    @GetMapping("/{id}")
-    public Vehicle getVehicleById(@PathVariable Long id) {
-        return vehicleService.getVehicleById(id);
-    }
-
-    // Get vehicles by user id
     @GetMapping("/user/{userId}")
-    public List<Vehicle> getVehiclesByUser(@PathVariable Long userId) {
-        return vehicleService.getVehiclesByUserId(userId);
+    public List<VehicleEntity> getByUser(@PathVariable Long userId) {
+        return vehicleService.getVehiclesByUser(userId);
+    }
+
+    @GetMapping("/{id}")
+    public VehicleEntity getVehicle(@PathVariable Long id) {
+        return vehicleService.findById(id);
     }
 }
