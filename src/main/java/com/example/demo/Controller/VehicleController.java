@@ -1,32 +1,43 @@
-package com.example.demo.Controller;
-
-import com.example.demo.entity.VehicleEntity;
-import com.example.demo.service.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
+import com.example.demo.entity.VehicleEntity;
+import com.example.demo.service.VehicleService;
 
 @RestController
 @RequestMapping("/vehicles")
 public class VehicleController {
 
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
 
-    @PostMapping("/add/{userId}")
-    public VehicleEntity addVehicle(@PathVariable Long userId,
-                                    @RequestBody VehicleEntity vehicle) {
-        return vehicleService.addVehicle(userId, vehicle);
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
     }
 
-    @GetMapping("/user/{userId}")
-    public List<VehicleEntity> getByUser(@PathVariable Long userId) {
-        return vehicleService.getVehiclesByUser(userId);
+    @PostMapping
+    public VehicleEntity createVehicle(@RequestBody VehicleEntity vehicle) {
+        return vehicleService.insertVehicle(vehicle);
+    }
+
+    @GetMapping
+    public List<VehicleEntity> getAllVehicles() {
+        return vehicleService.getAllVehicles();
     }
 
     @GetMapping("/{id}")
-    public VehicleEntity getVehicle(@PathVariable Long id) {
-        return vehicleService.findById(id);
+    public Optional<VehicleEntity> getVehicleById(@PathVariable Long id) {
+        return vehicleService.getOneVehicle(id);
+    }
+
+    @PutMapping("/{id}")
+    public VehicleEntity updateVehicle(@PathVariable Long id, @RequestBody VehicleEntity vehicle) {
+        return vehicleService.updateVehicle(id, vehicle);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteVehicle(@PathVariable Long id) {
+        return vehicleService.deleteVehicle(id) ? "Deleted Successfully ✅" : "Vehicle Not Found ❌";
     }
 }

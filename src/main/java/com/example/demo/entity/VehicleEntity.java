@@ -1,66 +1,51 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "vehicles")
 public class VehicleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    private String brand;
+    private String model;
+    private int year;
 
-    @Column(nullable = false, unique = true)
-    private String vehicleNumber;
-
-    @Column(nullable = false)
-    private Double capacityKg;
-
-    @Column(nullable = false)
-    private Double fuelEfficiency;
-
-    // getters and setters
+    // ✅ Getters & Setters
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public String getVehicleNumber() {
-        return vehicleNumber;
+    public String getModel() {
+        return model;
     }
-    
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
+
+    public void setModel(String model) {
+        this.model = model;
     }
-    
-    public Double getCapacityKg() {
-        return capacityKg;
+
+    public int getYear() {
+        return year;
     }
-    
-    public void setCapacityKg(Double capacityKg) {
-        this.capacityKg = capacityKg;
-    }
-    
-    public Double getFuelEfficiency() {
-        return fuelEfficiency;
-    }
-    
-    public void setFuelEfficiency(Double fuelEfficiency) {
-        this.fuelEfficiency = fuelEfficiency;
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
